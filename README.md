@@ -6,6 +6,7 @@ So it can be shared across teams via git and put as first page to load (instead 
 
 Feel free to edit everything
 
+
 # Example
 
 Have a loot at [This](http://palovandalo.com/landingpage/)
