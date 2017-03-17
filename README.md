@@ -9,4 +9,4 @@ Feel free to edit everything
 
 # Example
 
-Have a loot at [This](http://palovandalo.com/landingpage/)
+Have a look at [This](http://palovandalo.com/landingpage/)
