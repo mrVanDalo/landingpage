@@ -36,7 +36,7 @@
         },
         {
             title:"JavaScript",
-            text:"The only programming language that matters.",
+            text:"There is room for some text here!",
             items:[
             {
                 label:"jQuery",
@@ -132,11 +132,11 @@
     /* --- */
 
     const createItemRow = item => {
-        const title = `
+        const title = item.title ? `
             <h1 class="col-xs-12">
                 ${item.title}
             </h1>
-        `;
+        ` : '';
         const text = item.text ? `
             <p class="col-xs-12">
                 ${item.text}
