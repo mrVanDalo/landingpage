@@ -34,7 +34,9 @@
         },
         {
             title:"JavaScript",
-            text:"There is room for some text here!",
+            text:`There is room for some text here!
+
+And some more.`,
             items:[
             {
                 label:"jQuery",
@@ -130,15 +132,13 @@
 
     const createItemRow = item => {
         const title = item.title ? `
-            <h1 class="col-xs-12">
-                ${item.title}
-            </h1>
-        ` : '';
+            <h2 class="col-xs-12 text-center"> ${item.title} </h2>
+            ` : '';
         const text = item.text ? `
-            <p class="col-xs-12">
-                ${item.text}
-            </p>
-        ` : '';
+            <div class="col-xs-12">
+              <pre>${item.text}</pre>
+            </div>
+            ` : '';
 
         const subItems = item.items
             .map(subItem => createSubItem(subItem))
