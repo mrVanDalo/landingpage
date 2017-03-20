@@ -1,21 +1,17 @@
+<!doctype html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>Startpage</title>
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <!-- Latest compiled and minified Bootstrap CSS -->
     <link rel="stylesheet" 
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
           crossorigin="anonymous">
-    <!-- Latest compiled and minified Bootstrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
-            crossorigin="anonymous"></script>
-
   </head>
   <body>
       <div class="container" id="content">
+          Oh no! If you're reading this, something went wrong. :(
       </div>
     <script>
 
@@ -25,9 +21,7 @@
 
     */
 
-    var content = { 
-        defaultImage: "http://i.giphy.com/l0HlRnAWXxn0MhKLK.gif",
-        items: [
+    const contentItems = [
         {
             title:"Landing Page",
             items:[
@@ -40,6 +34,7 @@
         },
         {
             title:"JavaScript",
+            text:"There is room for some text here!",
             items:[
             {
                 label:"jQuery",
@@ -118,8 +113,7 @@
             },
             ]
         },
-        ]
-    };
+    ];
 
 
 
@@ -132,43 +126,52 @@
 
     */
 
+    /* --- */
 
-    var items = content.items
-    for ( var i in items ){
-        var item = items[i];
+    const createItemRow = item => {
+        const title = item.title ? `
+            <h1 class="col-xs-12">
+                ${item.title}
+            </h1>
+        ` : '';
+        const text = item.text ? `
+            <p class="col-xs-12">
+                ${item.text}
+            </p>
+        ` : '';
 
-        var row = $("<div></div>", {
-            "class":"row"
-        });
+        const subItems = item.items
+            .map(subItem => createSubItem(subItem))
+            .join('');
 
-        var title = $("<h1></h1>",{
-            "class":"col-xs-12",
-            "text":item.title,
-        });
-
-        $("#content").append(row);
-        row.append(title);
-
-        for ( var x in item.items ){
-
-            var elem = item.items[x]
-            if (elem.image) { 
-                var image = elem.image;
-            } else {
-                var image = content.defaultImage;
-            }
-
-            row.append( `
-                    <div class="col-md-3 col-sm-4 col-xs-6">
-                      <a href="${elem.href}" class="thumbnail">
-                        <img src="${image}" class="img-rounded" style="width:250px;height:180px">
-                        <div class="caption" style="text-align:center;font-weight:bold"> ${elem.label} </div>
-                      </a>
-                    </div>
-                    `
-                    )
-        }
+        return `
+            <div class="row">
+                ${title}
+                ${text}
+                ${subItems}
+            </div>
+        `;
     }
+
+    const createSubItem = ({ label, href, image }) => `
+        <div class="col-md-3 col-sm-4 col-xs-6">
+            <a href="${href}" class="thumbnail">
+                <img src="${image}" class="img-rounded" style="width: 250px; height: 180px">
+                <div class="caption" style="text-align:center;font-weight:bold">
+                    ${label}
+                </div>
+            </a>
+        </div>
+    `
+
+    /* --- */
+
+    const container = document.querySelector('#content');
+
+    container.innerHTML = contentItems
+        .map(item => createItemRow(item))
+        .join('');
+
     </script>
   </body>
 </html>
