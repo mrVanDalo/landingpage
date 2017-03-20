@@ -21,9 +21,7 @@
 
     */
 
-    const content = { 
-        defaultImage: "http://i.giphy.com/l0HlRnAWXxn0MhKLK.gif",
-        items: [
+    const contentItems = [
         {
             title:"Landing Page",
             items:[
@@ -115,8 +113,7 @@
             },
             ]
         },
-        ]
-    };
+    ];
 
 
 
@@ -169,10 +166,9 @@
 
     /* --- */
 
-    const { items } = content;
     const container = document.querySelector('#content');
 
-    container.innerHTML = items
+    container.innerHTML = contentItems
         .map(item => createItemRow(item))
         .join('');
 
