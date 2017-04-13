@@ -140,9 +140,11 @@ And some more.`,
             </div>
             ` : '';
 
-        const subItems = item.items
-            .map(subItem => createSubItem(subItem))
-            .join('');
+        const subItems = item.items ?
+            item.items 
+                .map(subItem => createSubItem(subItem))
+                .join('');
+            : '';
 
         return `
             <div class="row">
