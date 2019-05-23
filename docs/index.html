@@ -3,11 +3,85 @@
   <head>
     <meta charset="utf-8">
     <title>Startpage</title>
-    <!-- Latest compiled and minified Bootstrap CSS -->
-    <link rel="stylesheet" 
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
-          crossorigin="anonymous">
+
+    <!-- The font -->
+    <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        font-family: 'Dosis', sans-serif;
+      }
+      body {
+        margin-left:0px;
+        margin-right:0px;
+        padding-left:0px;
+        padding-right:0px;
+      }
+      .container {
+        margin-left:0px;
+        margin-right:0px;
+        padding-left:0px;
+        padding-right:0px;
+      }
+      .row-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .row-title{
+        text-align: center;
+        padding-top: 7px;
+        padding-bottom: 2px;
+      }
+      .row-text {
+        text-align: center;
+        background-color: #e6ffcc;
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
+      .item {
+        display: grid;
+        grid-template-columns: 250px;
+        grid-template-rows: auto;
+        grid-template-areas:
+          "image"
+          "text";
+        margin: 2px;
+        border-style: solid;
+        border-width: 1px;
+        border-color:  #ffe6b3;
+        background-color: #ffe6b3;
+      }
+      .item-image {
+        grid-area: image;
+        width: 250px;
+        height: 180px;
+      }
+      .item-caption{
+        grid-area: image;
+        padding-bottom: 3px;
+      };
+      a {
+        text-decoration: none;
+        color: black;
+      }
+      a:link {
+        text-decoration: none;
+        color: black;
+      }
+      a:visited {
+        text-decoration: none;
+        color: black;
+      }
+      a:hover {
+        text-decoration: none;
+        color: black;
+      }
+      a:active {
+        text-decoration: none;
+        color: black;
+      }
+    </style>
+
   </head>
   <body>
       <div class="container" id="content">
@@ -131,40 +205,44 @@ And some more.`,
     /* --- */
 
     const createItemRow = item => {
-        const title = item.title ? `
-            <h2 class="col-xs-12 text-center"> ${item.title} </h2>
-            ` : '';
-        const text = item.text ? `
-            <div class="col-xs-12">
-              <pre>${item.text}</pre>
-            </div>
-            ` : '';
 
-        const subItems = item.items ?
-            item.items 
-                .map(subItem => createSubItem(subItem))
-                .join('');
-            : '';
+        const title = item.title ? `
+            <h2 class="row-title"> ${item.title} </h2>
+        ` : '';
+
+        const text = item.text ? `
+            <div class="row-text">
+                <pre>${item.text}</pre>
+            </div>
+        ` : '';
+
+        const subItems = item.items
+            .map(subItem => createSubItem(subItem))
+            .join('');
 
         return `
             <div class="row">
                 ${title}
                 ${text}
+              <div class="row-items">
                 ${subItems}
+              </div>
             </div>
         `;
     }
 
-    const createSubItem = ({ label, href, image }) => `
-        <div class="col-md-3 col-sm-4 col-xs-6">
-            <a href="${href}" class="thumbnail">
-                <img src="${image}" class="img-rounded" style="width: 250px; height: 180px">
-                <div class="caption" style="text-align:center;font-weight:bold">
-                    ${label}
+    const createSubItem = ({ label, href, image }) => {
+        const shortLabel = (label.length > 28) ? `${label.substring(0,25)}...` : label;
+
+        return `<div class="item">
+            <a target="_blank" rel="noopener noreferrer" href="${href}" class="thumbnail">
+                <img src="${image}" class="item-image">
+                <div class="item-caption" style="text-align:center;font-weight:bold">
+                    ${shortLabel}
                 </div>
             </a>
-        </div>
-    `
+        </div>`;
+    }
 
     /* --- */
 
