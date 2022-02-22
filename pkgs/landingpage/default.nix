@@ -15,6 +15,7 @@
 , colorScheme ? {
     backgroundColor = "#fdf6e3";
     rowColor = "#6c71c4";
+    rowTextColor = "#fdf6e3";
     hoverColor = "#268bd2";
     itemColor = "#2aa198";
   }
@@ -116,7 +117,7 @@ writeTextFile
                     .row-text {
                         text-align: center;
                         background-color:  ${rowColor};
-                        color: ${backgroundColor};
+                        color: ${rowTextColor};
                         padding-top: 7px;
                         padding-bottom: 7px;
                     }

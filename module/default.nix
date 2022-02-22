@@ -43,6 +43,10 @@ in
         type = types.str;
         default = "#fdf6e3";
       };
+      rowTextColor = mkOption {
+        type = types.str;
+        default = "#fdf6e3";
+      };
       rowColor = mkOption {
         type = types.str;
         default = "#6c71c4";
@@ -83,7 +87,7 @@ in
 
   config = mkIf cfg.enable {
     home.file."Desktop/landingpage.html".source = "${landingpage.override { jsonConfig =  cfg.config ;
-                                                                            colorScheme = {inherit (cfg) backgroundColor rowColor hoverColor itemColor;};
+                                                                            colorScheme = {inherit (cfg) backgroundColor rowColor hoverColor itemColor rowTextColor;};
                                                                             inherit (cfg) enableGiphySearch enableUrlEncode;
                                                                           }
                                                     }/index.html";
