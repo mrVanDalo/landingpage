@@ -86,8 +86,9 @@ in
     };
 
   config = mkIf cfg.enable {
-    home.file."Desktop/landingpage.html".source = "${landingpage.override { jsonConfig =  cfg.config ;
+    home.file."Desktop/landingpage.html".source = "${landingpage.override { jsonConfig =  cfg.config;
                                                                             colorScheme = {inherit (cfg) backgroundColor rowColor hoverColor itemColor rowTextColor;};
+                                                                            title = cfg.title;
                                                                             inherit (cfg) enableGiphySearch enableUrlEncode;
                                                                           }
                                                     }/index.html";

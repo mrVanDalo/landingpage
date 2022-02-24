@@ -12,15 +12,13 @@
           pkgs = nixpkgs.legacyPackages.${system};
         in
         {
-          packages.landingpage = pkgs.callPackage ./pkgs/landingpage/default.nix { };
+          packages.masonry = pkgs.callPackage ./pkgs/landingpage/masonry.nix { };
           # nix build
-          defaultPackage = self.packages.${system}.landingpage;
+          defaultPackage = self.packages.${system}.masonry;
 
           # home manager modules
           hmModules.landingpage = import ./module/default.nix { landingpage = self.defaultPackage.${system}; };
-          hmModule = {
-            imports = [ self.hmModules.${system}.landingpage ];
-          };
+          hmModule.imports = [ self.hmModules.${system}.landingpage ];
 
         }
       )

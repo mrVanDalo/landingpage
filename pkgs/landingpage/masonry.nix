@@ -225,52 +225,8 @@ writeTextFile
                   `;
                 }
 
-           /**
-             * Return a random element from an array that is
-             * different than `last` (as long as the array has > 1 items).
-             * Return null if the array is empty.
-             * source : https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array
-             */
-             function getRandomDifferent(arr, last = undefined) {
-             if (arr.length === 0) {
-             return;
-             } else if (arr.length === 1) {
-             return arr[0];
-             } else {
-             let num = 0;
-             do {
-             num = Math.floor(Math.random() * arr.length);
-             } while (arr[num] === last);
-             return arr[num];
-             }
-             }
-
-             function giphySearch() {
-             return `
-             <div class="row">
-             ''${rowText("Giphy Search")}
-             <div class="row-container giphy-search">
-             <input type="text" id="giphyQuery"/>
-             <button type="button" class="encode" onclick="doGiphySearch()">Search</button>
-             </div>
-             </div>
-             </div>
-             `;
-             }
-
-             function encoder(){
-             return `
-             <div class="row url-encoder">
-             ''${rowText("URL Encoder/Decoder")}
-             <div class="row-container">
-             <textarea id="encodingBox">http://localhost:4444/oauth2/token?market=au&bla=blubb</textarea>
-             <button type="button" class="encode" onclick="boxEncode()">Encode</button>
-             <button type="button" class="decode" onclick="boxDecode()">Decode</button>
-             </div>
-             </div>
-             </div>
-             `;
-             }
+      ${fileContents ./giphySearch.js}
+      ${fileContents ./encoder.js}
 
       /* [  THE CONTENT ] */
 
