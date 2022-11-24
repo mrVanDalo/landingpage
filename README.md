@@ -6,7 +6,19 @@ So it can be shared across teams via git and put as first page to load (instead 
 
 Feel free to edit everything
 
-# Import using flakes
+# Nixpkgs
+
+Provides nixpkgs which can be overwritten
+
+``` nix
+services.nginx.virtualHosts."example.org" = {
+  locations."/" = {
+    root = pkgs.landingpage.override.jsonConfig.items = [...];
+  };
+};
+```
+
+# Using via Homemanager and flakes
 
 ``` nix
 {

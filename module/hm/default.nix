@@ -1,4 +1,4 @@
-{ landingpage }:
+{ masonry, ... }:
 { config, lib, pkgs, ... }:
 
 with lib;
@@ -36,7 +36,7 @@ in
       enable = mkEnableOption "landingpage";
 
       title = mkOption {
-        default = "Landing Page (Masonry)";
+        default = "Landing Page";
         type = types.str;
       };
       backgroundColor = mkOption {
@@ -67,12 +67,16 @@ in
         type = types.bool;
         default = true;
       };
+      package = mkOption {
+        type = types.package;
+        default = masonry;
+      };
 
       config = mkMagicMergeOption {
         description = "landingpage configuration";
         default = [
           {
-            text = "Landing Page (Masonry)";
+            text = "Landing Page";
             items = [
               {
                 url = "https://nixos.org/";
@@ -86,12 +90,24 @@ in
     };
 
   config = mkIf cfg.enable {
-    home.file."Desktop/landingpage.html".source = "${landingpage.override { jsonConfig =  cfg.config;
-                                                                            colorScheme = {inherit (cfg) backgroundColor rowColor hoverColor itemColor rowTextColor;};
-                                                                            title = cfg.title;
-                                                                            inherit (cfg) enableGiphySearch enableUrlEncode;
-                                                                          }
-                                                    }/index.html";
+    home.file."Desktop/landingpage.html".source =
+      let
+        package = cfg.package.override {
+          inherit (cfg)
+            enableGiphySearch
+            enableUrlEncode
+            title;
+          jsonConfig = cfg.config;
+          colorScheme = {
+            inherit (cfg)
+              backgroundColor
+              rowColor
+              hoverColor itemColor
+              rowTextColor;
+          };
+        };
+      in
+      "${package}/index.html";
   };
 
 }
