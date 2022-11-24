@@ -13,7 +13,7 @@ Provides nixpkgs which can be overwritten
 ``` nix
 services.nginx.virtualHosts."example.org" = {
   locations."/" = {
-    root = pkgs.landingpage.override.jsonConfig.items = [...];
+    root = pkgs.landingpage.override { jsonConfig.items = [...]; };
   };
 };
 ```
