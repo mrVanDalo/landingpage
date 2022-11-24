@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Startpage</title>
+
+    <!-- The font -->
+    <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        font-family: 'Dosis', sans-serif;
+      }
+      body {
+        margin-left:0px;
+        margin-right:0px;
+        padding-left:0px;
+        padding-right:0px;
+      }
+      .container {
+        margin-left:0px;
+        margin-right:0px;
+        padding-left:0px;
+        padding-right:0px;
+      }
+      .row-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .row-title{
+        text-align: center;
+        padding-top: 7px;
+        padding-bottom: 2px;
+      }
+      .row-text {
+        text-align: center;
+        background-color: #e6ffcc;
+        padding-top: 7px;
+        padding-bottom: 7px;
+      }
+      .item {
+        display: grid;
+        grid-template-columns: 250px;
+        grid-template-rows: auto;
+        grid-template-areas:
+          "image"
+          "text";
+        margin: 2px;
+        border-style: solid;
+        border-width: 1px;
+        border-color:  #ffe6b3;
+        background-color: #ffe6b3;
+      }
+      .item-image {
+        grid-area: image;
+        width: 250px;
+        height: 180px;
+      }
+      .item-caption{
+        grid-area: text;
+        padding-bottom: 3px;
+      };
+      a {
+        text-decoration: none;
+        color: black;
+      }
+      a:link {
+        text-decoration: none;
+        color: black;
+      }
+      a:visited {
+        text-decoration: none;
+        color: black;
+      }
+      a:hover {
+        text-decoration: none;
+        color: black;
+      }
+      a:active {
+        text-decoration: none;
+        color: black;
+      }
+    </style>
+
+  </head>
+  <body>
+      <div class="container" id="content">
+          Oh no! If you're reading this, something went wrong. :(
+      </div>
+    <script>
+
+    /**
+
+                                                   [  THE CONTENT ]
+
+    */
+
+    const contentItems = [
+        {
+            title:"Landing Page",
+            items:[
+            {
+                label:"The Landing Page Project",
+                href:"https://github.com/mrVanDalo/landingpage",
+                image:"http://i.giphy.com/mXnO9IiWWarkI.gif"
+            },
+            ]
+        },
+        {
+            title:"JavaScript",
+            text:`There is room for some text here!
+
+And some more.`,
+            items:[
+            {
+                label:"jQuery",
+                href:"https://jquery.com/",
+                image:"https://brand.jquery.org/resources/jquery-mark-light.gif"
+            },
+            {
+                label:"Coffee Script",
+                href:"http://coffeescript.org/",
+                image:"http://i.giphy.com/XlOLpoZyYZ1pm.gif"
+            },
+            {
+                label:"Node JS",
+                href:"https://nodejs.org/en/",
+                image:"http://www.cambus.net/files/nodejs/cl!-node.png"
+            },
+            ]
+        },
+        {
+            title:"Scala",
+            items:[
+            {
+                label:"Language",
+                href:"http://www.scala-lang.org/",
+                image:"http://www.scala-lang.org/resources/img/smooth-spiral@2x.png"
+            },
+            {
+                label:"Play Framework",
+                href:"https://playframework.com/",
+                image:"https://playframework.com/assets/images/logos/play_full_color.svg"
+            },
+            {
+                label:"Lift Framework",
+                href:"http://www.liftweb.net/",
+                image:"https://avatars3.githubusercontent.com/u/317975?v=3&s=200"
+            },
+            {
+                label:"Akka",
+                href:"http://akka.io/",
+                image:"http://akka.io/resources/images/akka_full_color.svg"
+            },
+            {
+                label:"Colossus",
+                href:"http://tumblr.github.io/colossus/",
+                image:"http://i.giphy.com/z9kFv20oZA6pG.gif"
+            },
+            {
+                label:"circe",
+                href:"https://travisbrown.github.io/circe/",
+                image:"https://travisbrown.github.io/circe/img/circe.svg"
+            },
+            {
+                label:"scala cats",
+                href:"http://typelevel.org/cats/",
+                image:"http://i.giphy.com/Ov5NiLVXT8JEc.gif"
+            },
+            {
+                label:"Scala School",
+                href:"https://twitter.github.io/scala_school/",
+                image:"http://i.giphy.com/KiXl0vfc9XIIM.gif"
+            },
+            {
+                label:"Progfun1",
+                href:"https://www.coursera.org/learn/progfun1",
+                image:"https://ucarecdn.com/6960fee2-a947-4b66-b307-67b9825c4dbe/"
+            },
+            ]
+        },
+        {
+            title:"Fun",
+            items:[
+            {
+                label:"xkcd",
+                href:"http://xkcd.com/",
+                image:"http://i.giphy.com/14xpktCBi3gyAg.gif"
+            },
+            ]
+        },
+    ];
+
+
+
+
+
+
+    /**
+
+                                                   [  THE STYLE ]
+
+    */
+
+    /* --- */
+
+    const createItemRow = item => {
+
+        const title = item.title ? `
+            <h2 class="row-title"> ${item.title} </h2>
+        ` : '';
+
+        const text = item.text ? `
+            <div class="row-text">
+                <pre>${item.text}</pre>
+            </div>
+        ` : '';
+
+        const subItems = item.items
+            .map(subItem => createSubItem(subItem))
+            .join('');
+
+        return `
+            <div class="row">
+                ${title}
+                ${text}
+              <div class="row-items">
+                ${subItems}
+              </div>
+            </div>
+        `;
+    }
+
+    const createSubItem = ({ label, href, image }) => {
+        const shortLabel = (label.length > 28) ? `${label.substring(0,25)}...` : label;
+
+        return `<div class="item">
+            <a target="_blank" rel="noopener noreferrer" href="${href}" class="thumbnail">
+                <img src="${image}" class="item-image">
+                <div class="item-caption" style="text-align:center;font-weight:bold">
+                    ${shortLabel}
+                </div>
+            </a>
+        </div>`;
+    }
+
+    /* --- */
+
+    const container = document.querySelector('#content');
+
+    container.innerHTML = contentItems
+        .map(item => createItemRow(item))
+        .join('');
+
+    </script>
+  </body>
+</html>
