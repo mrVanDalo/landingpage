@@ -8,6 +8,16 @@
         label = "NixOS";
         image = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake.svg";
       }
+      {
+        href = "https://nixos.org/";
+        label = "NixOS";
+        image = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake.svg";
+      }
+      {
+        href = "https://nixos.org/";
+        label = "NixOS";
+        image = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake.svg";
+      }
     ];
   }]
 , title ? "Landing Page"
@@ -28,86 +38,28 @@ writeTextFile {
         <title>${title}</title>
         <!-- The font -->
         <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
-      <style>
-        :root{
-          font-family: 'Dosis', sans-serif;
-        }
-          body {
-            margin-left:0px;
-            margin-right:0px;
-            padding-left:0px;
-            padding-right:0px;
-          }
-          .container {
-            margin-left:0px;
-            margin-right:0px;
-            padding-left:0px;
-            padding-right:0px;
-          }
-          .row-items {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-          }
-          .row-title{
-            text-align: center;
-            padding-top: 7px;
-            padding-bottom: 2px;
-          }
-          .row-text {
-            text-align: center;
-            background-color: #e6ffcc;
-            padding-top: 7px;
-            padding-bottom: 7px;
-          }
-          .item {
-            display: grid;
-            grid-template-columns: 250px;
-            grid-template-rows: auto;
-            grid-template-areas:
-              "image"
-              "text";
-            margin: 2px;
-            // border-style: solid;
-            border-width: 0px;
-            border-color:  #ffe6b3;
-            background-color: #ffe6b3;
-          }
-          .item-image {
-            grid-area: image;
-            width: 250px;
-            height: 180px;
-          }
-          .item-caption{
-            grid-area: text;
-            padding-bottom: 3px;
-          };
-          a {
-            text-decoration: none;
-            color: black;
-          }
-          a:link {
-            text-decoration: none;
-            color: black;
-          }
-          a:visited {
-            text-decoration: none;
-            color: black;
-          }
-          a:hover {
-            text-decoration: none;
-            color: black;
-          }
-          a:active {
-            text-decoration: none;
-            color: black;
-          }
-      </style>
+      <style> ${lib.fileContents ./plain.css} </style>
       </head>
-
       <body>
 
     ${let
+
+      createItemContainer = list:
+        with lib;
+        let
+          a = optionalString
+            (list != [])
+            ''<div class="a">${createSubItem (head list)}</div>'';
+          bList = drop 1 (take 2 list);
+          b = optionalString
+            (bList != [])
+            ''<div class="b">${createSubItem (head bList)}</div>'';
+          rest = drop 2 list;
+          in
+        if list == []
+        then []
+        else
+          concat [''<div class="item-container"> ${a} ${b} </div>''] (createItemContainer rest);
 
       createItemRow = { titel ? null, text ? null, items ? [ ] }: ''
         <div class="row">
@@ -122,7 +74,7 @@ writeTextFile {
               </div>''
           }
           <div class="row-items">
-            ${concatStringsSep "\n" (map createSubItem items)}
+            ${concatStringsSep "\n" (createItemContainer items)}
           </div>
         </div>'';
 
