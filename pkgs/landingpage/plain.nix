@@ -1,27 +1,15 @@
 { lib
 , writeTextFile
-, jsonConfig ? [{
-    text = "Landing Page Example";
-    items = [
-      {
-        href = "https://nixos.org/";
-        label = "NixOS";
-        image = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake.svg";
-      }
-      {
-        href = "https://nixos.org/";
-        label = "NixOS";
-        image = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake.svg";
-      }
-      {
-        href = "https://nixos.org/";
-        label = "NixOS";
-        image = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake.svg";
-      }
-    ];
-  }
+, jsonConfig ? [
     {
-      text = "NixOS";
+      title = "NixOS";
+      text = ''
+        These are test links for you to get a peek on how it
+        will look.
+
+        Have fun
+        Santa Clause
+      '';
       items = [
         {
           label = "NixOS Manual";
@@ -74,15 +62,27 @@
             "https://media.giphy.com/media/Uq9bGjGKg08M0/giphy.gif";
         }
       ];
-    }]
+    }
+  ]
 , title ? "Landing Page"
 , destination ? "/index.html"
+, max-width ? "1300px"
+, background-color ? "#FEFAE0"
+, title-color ? "black"
+, title-background-color ? "#E9EDC9"
+, text-color ? "black"
+, text-background-color ? "#FAEDCD"
+, item-color ? "black"
+, item-background-color ? "#E9EDC9"
+, image-width ? "250px"
+, image-height ? "180px"
 , ...
 }:
 
 with lib;
 
 writeTextFile {
+
   name = "landingpage";
   destination = destination;
   text = ''
@@ -94,16 +94,31 @@ writeTextFile {
         <title>${title}</title>
         <!-- The font -->
         <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
-      <style> ${lib.fileContents ./plain.css} </style>
+      <style>
+      :root{
+        font-family: 'Dosis', sans-serif;
+        --max-width: ${max-width};
+        background-color: ${background-color};
+        --title-color: ${title-color};
+        --title-background-color: ${title-background-color};
+        --text-color: ${text-color};
+        --text-background-color: ${text-background-color};
+        --item-color: ${item-color};
+        --item-background-color: ${item-background-color};
+        --image-width: ${image-width};
+        --image-height: ${image-height};
+      }
+      ${lib.fileContents ./plain.css}
+      </style>
       </head>
       <body>
 
     ${let
 
-      createItemRow = { titel ? null, text ? null, items ? [ ] }: ''
+      createItemRow = { title ? null, text ? null, items ? [ ] }: ''
         <div class="row">
           ${
-            optionalString (titel != null)
+            optionalString (title != null)
             ''<h2 class="row-title">${title}</h2>''
           }
           ${
