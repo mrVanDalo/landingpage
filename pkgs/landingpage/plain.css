@@ -17,7 +17,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
-    width: fit-content;
+    max-width: 1300px;
     margin: auto;
 }
 .row-title{
