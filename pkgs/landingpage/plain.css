@@ -29,22 +29,26 @@ body {
     padding-top: 7px;
     padding-bottom: 7px;
 }
+
 .item-container {
     display: grid;
-    grid-template-columns: 250px 250px;
+    grid-template-columns: 250px 2px 250px;
     grid-template-rows: auto;
     grid-template-areas:
-        "a b";
-    margin: 0px;
+        "left . right";
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     padding: 0px;
     border: 0px;
     border-width: 0px;
 }
-.a {
-    grid-area: a;
+.left {
+    grid-area: left;
 }
-.b {
-    grid-area: b;
+.right {
+    grid-area: right;
 }
 .item {
     display: grid;
@@ -53,8 +57,7 @@ body {
     grid-template-areas:
         "image"
         "text";
-    margin: 2px;
-    // border-style: solid;
+    /* border-style: solid; */
     border-width: 0px;
     border-color:  #ffe6b3;
     background-color: #ffe6b3;

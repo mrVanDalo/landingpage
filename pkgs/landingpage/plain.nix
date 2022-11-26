@@ -19,7 +19,62 @@
         image = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake.svg";
       }
     ];
-  }]
+  }
+    {
+      text = "NixOS";
+      items = [
+        {
+          label = "NixOS Manual";
+          href = "https://nixos.org/nixos/manual/";
+          image =
+            "https://media.giphy.com/media/dsdVyKkSqccEzoPufX/giphy.gif";
+        }
+        {
+          label = "Nixpkgs Manual";
+          href = "https://nixos.org/nixpkgs/manual/";
+          image =
+            "https://media.giphy.com/media/dsdVyKkSqccEzoPufX/giphy.gif";
+        }
+        {
+          label = "NixOS Reference";
+          href =
+            "https://storage.googleapis.com/files.tazj.in/nixdoc/manual.html#sec-functions-library";
+          image =
+            "https://media.giphy.com/media/LkjlH3rVETgsg/giphy.gif";
+        }
+        {
+          label = "Nix Packages";
+          href = "https://nixos.org/nixos/packages.html";
+          image =
+            "https://media.giphy.com/media/l2YWlohvjPnsvkdEc/giphy.gif";
+        }
+        {
+          label = "NixOS Language specific helpers";
+          href =
+            "https://nixos.wiki/wiki/Language-specific_package_helpers";
+          image =
+            "https://media.giphy.com/media/LkjlH3rVETgsg/giphy.gif";
+        }
+        {
+          label = "NixOS Weekly";
+          href = "https://weekly.nixos.org/";
+          image =
+            "https://media.giphy.com/media/lXiRLb0xFzmreM8k8/giphy.gif";
+        }
+        {
+          label = "NixOS Security";
+          href = "https://broken.sh/";
+          image =
+            "https://media.giphy.com/media/BqILAHjH1Ttm0/giphy.gif";
+        }
+        {
+          label = "NixOS RFCs";
+          href = "https://github.com/NixOS/rfcs/";
+          image =
+            "https://media.giphy.com/media/Uq9bGjGKg08M0/giphy.gif";
+        }
+      ];
+    }]
 , title ? "Landing Page"
 , destination ? "/index.html"
 , ...
@@ -35,6 +90,7 @@ writeTextFile {
     <html>
       <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1">
         <title>${title}</title>
         <!-- The font -->
         <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
@@ -47,19 +103,19 @@ writeTextFile {
       createItemContainer = list:
         with lib;
         let
-          a = optionalString
+          left = optionalString
             (list != [])
-            ''<div class="a">${createSubItem (head list)}</div>'';
+            ''<div class="left">${createSubItem (head list)}</div>'';
           bList = drop 1 (take 2 list);
-          b = optionalString
+          right = optionalString
             (bList != [])
-            ''<div class="b">${createSubItem (head bList)}</div>'';
+            ''<div class="right">${createSubItem (head bList)}</div>'';
           rest = drop 2 list;
           in
         if list == []
         then []
         else
-          concat [''<div class="item-container"> ${a} ${b} </div>''] (createItemContainer rest);
+          concat [''<div class="item-container"> ${left} ${right} </div>''] (createItemContainer rest);
 
       createItemRow = { titel ? null, text ? null, items ? [ ] }: ''
         <div class="row">
