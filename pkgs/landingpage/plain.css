@@ -16,7 +16,9 @@ body {
 .row-items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
+    width: fit-content;
+    margin: auto;
 }
 .row-title{
     text-align: center;
@@ -29,27 +31,6 @@ body {
     padding-top: 7px;
     padding-bottom: 7px;
 }
-
-.item-container {
-    display: grid;
-    grid-template-columns: 250px 2px 250px;
-    grid-template-rows: auto;
-    grid-template-areas:
-        "left . right";
-    margin-left: 1px;
-    margin-right: 1px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    padding: 0px;
-    border: 0px;
-    border-width: 0px;
-}
-.left {
-    grid-area: left;
-}
-.right {
-    grid-area: right;
-}
 .item {
     display: grid;
     grid-template-columns: 250px;
@@ -61,6 +42,10 @@ body {
     border-width: 0px;
     border-color:  #ffe6b3;
     background-color: #ffe6b3;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 .item-image {
     grid-area: image;

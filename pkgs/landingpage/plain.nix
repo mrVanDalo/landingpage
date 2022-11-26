@@ -100,23 +100,6 @@ writeTextFile {
 
     ${let
 
-      createItemContainer = list:
-        with lib;
-        let
-          left = optionalString
-            (list != [])
-            ''<div class="left">${createSubItem (head list)}</div>'';
-          bList = drop 1 (take 2 list);
-          right = optionalString
-            (bList != [])
-            ''<div class="right">${createSubItem (head bList)}</div>'';
-          rest = drop 2 list;
-          in
-        if list == []
-        then []
-        else
-          concat [''<div class="item-container"> ${left} ${right} </div>''] (createItemContainer rest);
-
       createItemRow = { titel ? null, text ? null, items ? [ ] }: ''
         <div class="row">
           ${
@@ -130,7 +113,7 @@ writeTextFile {
               </div>''
           }
           <div class="row-items">
-            ${concatStringsSep "\n" (createItemContainer items)}
+            ${concatStringsSep "\n" (map createSubItem items)}
           </div>
         </div>'';
 
