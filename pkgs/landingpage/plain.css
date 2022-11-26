@@ -13,7 +13,7 @@ body {
 .row-items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: space-between;
     max-width: var(--max-width);
     margin: auto;
 }
