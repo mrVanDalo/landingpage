@@ -3,6 +3,7 @@
 , jsonConfig ? [
     {
       title = "NixOS";
+      urlEncode = true;
       text = ''
         These are test links for you to get a peek on how it
         will look.
@@ -101,11 +102,24 @@ writeTextFile {
       ${lib.fileContents ./plain.css}
       </style>
       </head>
+      <!-- URL Encoder -->
+      <script type="text/javascript">
+        function boxEncode() {
+           area = document.getElementById("encodingBox")
+           var unencoded = area.value;
+           area.value = encodeURIComponent(unencoded).replace(/'/g, "%27").replace(/"/g, "%22");
+        }
+        function boxDecode() {
+           area = document.getElementById("encodingBox")
+           var encoded = area.value;
+           area.value = decodeURIComponent(encoded).replace(/'/g, "%27").replace(/"/g, "%22");
+        }
+      </script>
       <body>
 
     ${let
 
-      createItemRow = { title ? null, text ? null, items ? [ ] }: ''
+      createItemRow = { title ? null, text ? null, items ? [ ] , urlEncode ? false }: ''
         <div class="row">
           ${
             optionalString (title != null)
@@ -116,6 +130,17 @@ writeTextFile {
               <div class="row-text">
                 <pre>${text}</pre>
               </div>''
+          }
+          ${
+            optionalString (urlEncode)
+            ''
+            <div class="url-encoder">
+              <span class="url-encoder-title"> URL Encoder/Decoder</span>
+              <textarea id="encodingBox">http://localhost:4444/oauth2/token?market=au&bla=blubb</textarea>
+              <button type="button" class="encode" onclick="boxEncode()">Encode</button>
+              <button type="button" class="decode" onclick="boxDecode()">Decode</button>
+            </div>
+            ''
           }
           <div class="row-items">
             ${concatStringsSep "\n" (map createSubItem items)}

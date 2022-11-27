@@ -5,6 +5,44 @@ body {
     padding-left:0px;
     padding-right:0px;
 }
+
+.url-encoder {
+    display: grid;
+    grid-template-rows: 2.0em 3em 2.0em;
+    grid-template-columns: auto calc(var(--image-width) / 2) calc(var(--image-width) / 2);
+    grid-template-areas: "head head head"
+                          "input input input"
+                          ". encode decode";
+    background-color: var(--text-background-color);
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0em;
+    margin-bottom: 0.3em;
+}
+.url-encoder-title{
+    margin: 0.3em 0.3em 0.3em;
+    padding: 0.1em;
+    grid-area: head;
+    font-weight: bold;
+}
+.url-encoder #encodingBox {
+    margin: 0em 0.3em 0.3em;
+    padding: 0.1em;
+    grid-area: input;
+}
+.url-encoder .encode {
+    margin: 0em 0.3em 0.3em;
+    padding: 0.1em;
+    grid-area: encode;
+}
+.url-encoder .decode {
+    margin: 0em 0.3em 0.3em;
+    padding: 0.1em;
+    grid-area: decode;
+}
+
+
 .row-title{
     background-color: var(--title-background-color);
     color: var(--title-color);
