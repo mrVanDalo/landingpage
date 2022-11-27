@@ -42,7 +42,6 @@ body {
     grid-area: decode;
 }
 
-
 .row-title{
     background-color: var(--title-background-color);
     color: var(--title-color);
@@ -105,7 +104,7 @@ body {
     padding-top:0.6em;
     color: var(--item-color);
     background-color: var(--item-background-color);
-};
+}
 a {
     text-decoration: none;
     color: black;

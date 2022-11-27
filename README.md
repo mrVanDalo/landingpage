@@ -1,10 +1,26 @@
-# Landingpage
 
-Is a simple html file using js and json to create a single html file for links, 
-which are important for your company/team.
-So it can be shared across teams via git and put as first page to load (instead of google).
+A simple HTML file using JSON to create a list of links.
+This is useful to collect links for projects or the teams you are working in.
 
-Feel free to edit everything
+![](./img/screenshot.png)
+
+## structure
+
+![](./img/structure.png)
+
+You define everything via JSON (or nix if you use the nix module).
+
+```
+title : "title",
+text : "text",
+items = [
+  {
+    "label": "go to example.com";
+    "href": "https://example.com";
+    "image": "https://media.giphy.com/media/xrrvZiFNuK7Xa/giphy.gif";
+  }
+]
+```
 
 # Nixpkgs
 

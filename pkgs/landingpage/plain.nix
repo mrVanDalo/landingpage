@@ -3,7 +3,6 @@
 , jsonConfig ? [
     {
       title = "NixOS";
-      urlEncode = true;
       text = ''
         These are test links for you to get a peek on how it
         will look.
@@ -67,6 +66,7 @@
 , item-background-color ? "#E9EDC9"
 , image-width ? "250px"
 , image-height ? "200px"
+, justJs ? false
 , ...
 }:
 
@@ -156,7 +156,26 @@ writeTextFile {
            <span class="item-caption" style="text-align:center;font-weight:bold"> ${label} </span>
         </a>'';
 
-    in concatStringsSep "\n" (map createItemRow jsonConfig)}
+    in
+    if justJs
+    then
+      ''
+      <div id="content">
+        Oh no! If you're reading this, something went wrong. :(
+      </div>
+      <script>
+
+      /* content */
+      // todo : add your contents in here
+      const contentItems = ${builtins.toJSON(jsonConfig)};
+
+      ${optionalString justJs fileContents ./plain.js}
+
+      </script>
+      ''
+    else
+    concatStringsSep "\n" (map createItemRow jsonConfig)
+    }
 
       </body>
     </html>

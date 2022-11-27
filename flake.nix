@@ -12,18 +12,11 @@
           pkgs = nixpkgs.legacyPackages.${system};
         in
         {
-          packages.masonry = pkgs.callPackage ./pkgs/landingpage/masonry.nix { };
           packages.plain = pkgs.callPackage ./pkgs/landingpage/plain.nix { };
           packages.default = self.packages.${system}.plain;
 
           # nix build
           defaultPackage = self.packages.${system}.plain;
-
-          # home manager modules
-          hmModules.landingpage = import ./module/hm/default.nix {
-            inherit (self.packages.${system}) plain masonry;
-          };
-          hmModule.imports = [ self.hmModules.${system}.landingpage ];
 
           apps.default = self.apps.${system}.createNonNix;
           apps.createNonNix = {
