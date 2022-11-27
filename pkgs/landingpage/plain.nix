@@ -14,59 +14,49 @@
         {
           label = "NixOS Manual";
           href = "https://nixos.org/nixos/manual/";
-          image =
-            "https://media.giphy.com/media/dsdVyKkSqccEzoPufX/giphy.gif";
+          image = "https://media.giphy.com/media/WoWm8YzFQJg5i/giphy.gif";
         }
         {
           label = "Nixpkgs Manual";
           href = "https://nixos.org/nixpkgs/manual/";
-          image =
-            "https://media.giphy.com/media/dsdVyKkSqccEzoPufX/giphy.gif";
+          image = "https://media.giphy.com/media/WoWm8YzFQJg5i/giphy.gif";
         }
         {
           label = "NixOS Reference";
-          href =
-            "https://storage.googleapis.com/files.tazj.in/nixdoc/manual.html#sec-functions-library";
-          image =
-            "https://media.giphy.com/media/LkjlH3rVETgsg/giphy.gif";
+          href = "https://storage.googleapis.com/files.tazj.in/nixdoc/manual.html#sec-functions-library";
+          image = "https://media.giphy.com/media/LkjlH3rVETgsg/giphy.gif";
         }
         {
           label = "Nix Packages";
           href = "https://nixos.org/nixos/packages.html";
-          image =
-            "https://media.giphy.com/media/l2YWlohvjPnsvkdEc/giphy.gif";
+          image = "https://media.giphy.com/media/l2YWlohvjPnsvkdEc/giphy.gif";
         }
         {
           label = "NixOS Language specific helpers";
-          href =
-            "https://nixos.wiki/wiki/Language-specific_package_helpers";
-          image =
-            "https://media.giphy.com/media/LkjlH3rVETgsg/giphy.gif";
+          href = "https://nixos.wiki/wiki/Language-specific_package_helpers";
+          image = "https://media.giphy.com/media/LkjlH3rVETgsg/giphy.gif";
         }
         {
           label = "NixOS Weekly";
           href = "https://weekly.nixos.org/";
-          image =
-            "https://media.giphy.com/media/lXiRLb0xFzmreM8k8/giphy.gif";
+          image = "https://media.giphy.com/media/lXiRLb0xFzmreM8k8/giphy.gif";
         }
         {
           label = "NixOS Security";
           href = "https://broken.sh/";
-          image =
-            "https://media.giphy.com/media/BqILAHjH1Ttm0/giphy.gif";
+          image = "https://media.giphy.com/media/BqILAHjH1Ttm0/giphy.gif";
         }
         {
           label = "NixOS RFCs";
           href = "https://github.com/NixOS/rfcs/";
-          image =
-            "https://media.giphy.com/media/Uq9bGjGKg08M0/giphy.gif";
+          image = "https://media.giphy.com/media/Uq9bGjGKg08M0/giphy.gif";
         }
       ];
     }
   ]
 , title ? "Landing Page"
 , destination ? "/index.html"
-, max-width ? "1300px"
+, max-width ? "1260px"
 , background-color ? "#FEFAE0"
 , title-color ? "black"
 , title-background-color ? "#E9EDC9"
@@ -75,7 +65,7 @@
 , item-color ? "black"
 , item-background-color ? "#E9EDC9"
 , image-width ? "250px"
-, image-height ? "180px"
+, image-height ? "200px"
 , ...
 }:
 
@@ -97,8 +87,8 @@ writeTextFile {
       <style>
       :root{
         font-family: 'Dosis', sans-serif;
-        --max-width: ${max-width};
         background-color: ${background-color};
+        --max-width: ${max-width};
         --title-color: ${title-color};
         --title-background-color: ${title-background-color};
         --text-color: ${text-color};
@@ -136,14 +126,10 @@ writeTextFile {
         # const shortLabel = (label.length > 28) ? `''${label.substring(0,25)}...` : label;
 
         ''
-          <div class="item">
-            <a target="_blank" rel="noopener noreferrer" href="${href}" class="thumbnail">
-              <img src="${image}" class="item-image">
-              <div class="item-caption" style="text-align:center;font-weight:bold">
-                ${label}
-              </div>
-            </a>
-          </div>'';
+        <a target="_blank" rel="noopener noreferrer" href="${href}" class="item">
+           <img src="${image}" class="item-image">
+           <span class="item-caption" style="text-align:center;font-weight:bold"> ${label} </span>
+        </a>'';
 
     in concatStringsSep "\n" (map createItemRow jsonConfig)}
 

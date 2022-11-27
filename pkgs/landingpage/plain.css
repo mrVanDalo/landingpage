@@ -1,43 +1,44 @@
 body {
+    margin-top:0px;
     margin-left:0px;
     margin-right:0px;
     padding-left:0px;
     padding-right:0px;
-}
-.container {
-    margin-left:0px;
-    margin-right:0px;
-    padding-left:0px;
-    padding-right:0px;
-}
-.row-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: var(--max-width);
-    margin: auto;
 }
 .row-title{
-    text-align: center;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    margin-top: 0px;
-    margin-bottom: 2px;
     background-color: var(--title-background-color);
     color: var(--title-color);
+    text-align: center;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    margin-top: 0px;
+    margin-bottom: 0.3em;
 }
 .row-text {
     text-align: left;
     background-color: var(--text-background-color);
     color: var(--text-color);
     max-width: var(--max-width);
-    padding-top: 1px;
-    padding-bottom: 1px;
-    margin: auto;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0.3em;
 }
 .row-text > pre {
     margin-left: 1em;
     margin-right: 1em;
+}
+.row-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0.5em;
 }
 .item {
     display: grid;
@@ -50,10 +51,7 @@ body {
     border-width: 0px;
     border-color:  var(--item-background-color);
     background-color: var(--item-background-color);
-    margin-left: 1px;
-    margin-right: 1px;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 0.2em;
 }
 .item-image {
     grid-area: image;
@@ -62,8 +60,10 @@ body {
 }
 .item-caption{
     grid-area: text;
-    padding-bottom: 3px;
+    padding-bottom: 0.5em;
+    padding-top:0.6em;
     color: var(--item-color);
+    background-color: var(--item-background-color);
 };
 a {
     text-decoration: none;
@@ -84,4 +84,8 @@ a:hover {
 a:active {
     text-decoration: none;
     color: black;
+}
+.item:hover > .item-caption {
+    filter: invert(1);
+    transition-duration: 0.3s;
 }
