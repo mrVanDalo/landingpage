@@ -49,12 +49,12 @@ services.nginx.virtualHosts."example.org" = {
           {
             label = "go to example.com";
             href = "https://example.com";
-            image = "https://media.giphy.com/media/xrrvZiFNuK7Xa/giphy.gif;
+            image = "https://media.giphy.com/media/xrrvZiFNuK7Xa/giphy.gif";
           }
           {
             label = "go to example.com";
             href = "https://example.com";
-            image = "https://media.giphy.com/media/xrrvZiFNuK7Xa/giphy.gif;
+            image = "https://media.giphy.com/media/xrrvZiFNuK7Xa/giphy.gif";
           }
         ];
       }];
@@ -65,15 +65,15 @@ services.nginx.virtualHosts."example.org" = {
 
 ### parameter to override
 
-- title: "browser tab title
-- max-width:  width of the content block
-- background-color: background color of the whole page
-- title-color: color of the title block
-- title-background-color: background color of the title block
-- text-color: text color of the text block
-- text-background-color: background color of the text block
-- item-color: text color of the items
-- item-background-color: background color of the items
-- image-width: width of the images
-- image-height: height of the images
-- jsonConfig: the content defined under structure
+- `title`: browser tab title
+- `max-width`:  width of the content block
+- `background-color`: background color of the whole page
+- `title-color`: color of the title block
+- `title-background-color`: background color of the title block
+- `text-color`: text color of the text block
+- `text-background-color`: background color of the text block
+- `item-color`: text color of the items
+- `item-background-color`: background color of the items
+- `image-width`: width of the images
+- `image-height`: height of the images
+- `jsonConfig`: the content defined under structure
