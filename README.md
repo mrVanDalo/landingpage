@@ -4,6 +4,8 @@ This is useful to collect links for projects or the teams you are working in.
 
 ![](./img/screenshot.png)
 
+Have a look at [this github page](https://mrvandalo.github.io/landingpage/) for a working example.
+
 ## structure
 
 You define everything via JSON (or nix if you use the nix module).
@@ -27,9 +29,14 @@ You define everything via JSON (or nix if you use the nix module).
 }
 ```
 
-## Nixpkgs
+## Using JavaScript
 
-Provides nixpkgs which can be overwritten
+Just download the [index.html](./docs/index.html) from the `docs` folder.
+Edit the script variable `contentItmes` and you voilà, you have you own landing page.
+
+## Using NixPkgs
+
+The nix-flake provides a package that can be used to generate a fully static html page.
 
 ``` nix
 services.nginx.virtualHosts."example.org" = {
