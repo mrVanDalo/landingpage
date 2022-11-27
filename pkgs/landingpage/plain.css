@@ -67,6 +67,9 @@ body {
 .row-text > pre {
     margin-left: 1em;
     margin-right: 1em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: justify;
 }
 .row-items {
     display: flex;

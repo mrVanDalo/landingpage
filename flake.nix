@@ -25,8 +25,6 @@
           };
           hmModule.imports = [ self.hmModules.${system}.landingpage ];
 
-
-
           apps.default = self.apps.${system}.createNonNix;
           apps.createNonNix = {
             type = "app";
