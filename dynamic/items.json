@@ -1,0 +1,14 @@
+[
+  {
+    "text": "These are test links for you to get a peek on how it\nwill look.\n\nHave fun\nSanta Clause\n",
+    "title": "Dynamic",
+    "urlEncode": true,
+    "items": [
+      {
+        "href": "https://nixos.org/nixos/manual/",
+        "image": "https://media.giphy.com/media/WoWm8YzFQJg5i/giphy.gif",
+        "label": "NixOS Manual"
+      }
+    ]
+  }
+]
