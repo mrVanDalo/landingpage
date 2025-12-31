@@ -15,8 +15,6 @@
           packages.plain = pkgs.callPackage ./pkgs/landingpage/plain.nix { };
           packages.default = self.packages.${system}.plain;
 
-          # nix build
-          defaultPackage = self.packages.${system}.plain;
 
           apps.default = self.apps.${system}.createNonNix;
           apps.createNonNix = {
