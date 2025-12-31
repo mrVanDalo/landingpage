@@ -1,4 +1,3 @@
-
 A simple HTML file using JSON to create a list of links.
 This is useful to collect links for projects or the teams you are working in.
 
@@ -14,7 +13,7 @@ You define everything via JSON (or nix if you use the nix module).
 {
   "title": "title",
   "text": "text",
-  "items" : [
+  "items": [
     {
       "label": "go to example.com",
       "href": "https://example.com",
@@ -38,10 +37,10 @@ Edit the script variable `contentItmes` and you voilà, you have you own landing
 
 The nix-flake provides a package that can be used to generate a fully static html page.
 
-``` nix
+```nix
 services.nginx.virtualHosts."example.org" = {
   locations."/" = {
-    root = pkgs.landingpage.override { 
+    root = pkgs.landingpage.override {
       jsonConfig = [{
         title = "title";
         text = "text";
@@ -66,7 +65,7 @@ services.nginx.virtualHosts."example.org" = {
 ### parameter to override
 
 - `title`: browser tab title
-- `max-width`:  width of the content block
+- `max-width`: width of the content block
 - `background-color`: background color of the whole page
 - `title-color`: color of the title block
 - `title-background-color`: background color of the title block

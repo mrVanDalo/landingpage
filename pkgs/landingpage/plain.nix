@@ -1,6 +1,7 @@
-{ lib
-, writeTextFile
-, jsonConfig ? [
+{
+  lib,
+  writeTextFile,
+  jsonConfig ? [
     {
       title = "NixOS";
       text = ''
@@ -53,21 +54,21 @@
         }
       ];
     }
-  ]
-, title ? "Landing Page"
-, destination ? "/index.html"
-, max-width ? "1260px"
-, background-color ? "#FEFAE0"
-, title-color ? "black"
-, title-background-color ? "#E9EDC9"
-, text-color ? "black"
-, text-background-color ? "#FAEDCD"
-, item-color ? "black"
-, item-background-color ? "#E9EDC9"
-, image-width ? "250px"
-, image-height ? "200px"
-, justJs ? false
-, ...
+  ],
+  title ? "Landing Page",
+  destination ? "/index.html",
+  max-width ? "1260px",
+  background-color ? "#FEFAE0",
+  title-color ? "black",
+  title-background-color ? "#E9EDC9",
+  text-color ? "black",
+  text-background-color ? "#FAEDCD",
+  item-color ? "black",
+  item-background-color ? "#E9EDC9",
+  image-width ? "250px",
+  image-height ? "200px",
+  justJs ? false,
+  ...
 }:
 
 with lib;
@@ -117,64 +118,68 @@ writeTextFile {
       </script>
       <body>
 
-    ${let
+    ${
+      let
 
-      createItemRow = { title ? null, text ? null, items ? [ ] , urlEncode ? false }: ''
-        <div class="row">
-          ${
-            optionalString (title != null)
-            ''<h2 class="row-title">${title}</h2>''
-          }
-          ${
-            optionalString (text != null) ''
-              <div class="row-text">
-                <pre>${text}</pre>
-              </div>''
-          }
-          ${
-            optionalString (urlEncode)
-            ''
-            <div class="url-encoder">
-              <span class="url-encoder-title"> URL Encoder/Decoder</span>
-              <textarea id="encodingBox">http://localhost:4444/oauth2/token?market=au&bla=blubb</textarea>
-              <button type="button" class="encode" onclick="boxEncode()">Encode</button>
-              <button type="button" class="decode" onclick="boxDecode()">Decode</button>
-            </div>
-            ''
-          }
-          <div class="row-items">
-            ${concatStringsSep "\n" (map createSubItem items)}
-          </div>
-        </div>'';
+        createItemRow =
+          {
+            title ? null,
+            text ? null,
+            items ? [ ],
+            urlEncode ? false,
+          }:
+          ''
+            <div class="row">
+              ${optionalString (title != null) ''<h2 class="row-title">${title}</h2>''}
+              ${optionalString (text != null) ''
+                <div class="row-text">
+                  <pre>${text}</pre>
+                </div>''}
+              ${optionalString (urlEncode) ''
+                <div class="url-encoder">
+                  <span class="url-encoder-title"> URL Encoder/Decoder</span>
+                  <textarea id="encodingBox">http://localhost:4444/oauth2/token?market=au&bla=blubb</textarea>
+                  <button type="button" class="encode" onclick="boxEncode()">Encode</button>
+                  <button type="button" class="decode" onclick="boxDecode()">Decode</button>
+                </div>
+              ''}
+              <div class="row-items">
+                ${concatStringsSep "\n" (map createSubItem items)}
+              </div>
+            </div>'';
 
-      createSubItem = { label, href, image }:
-        # const shortLabel = (label.length > 28) ? `''${label.substring(0,25)}...` : label;
+        createSubItem =
+          {
+            label,
+            href,
+            image,
+          }:
+          # const shortLabel = (label.length > 28) ? `''${label.substring(0,25)}...` : label;
 
+          ''
+            <a target="_blank" rel="noopener noreferrer" href="${href}" class="item">
+               <img src="${image}" class="item-image">
+               <span class="item-caption" style="text-align:center;font-weight:bold"> ${label} </span>
+            </a>'';
+
+      in
+      if justJs then
         ''
-        <a target="_blank" rel="noopener noreferrer" href="${href}" class="item">
-           <img src="${image}" class="item-image">
-           <span class="item-caption" style="text-align:center;font-weight:bold"> ${label} </span>
-        </a>'';
+          <div id="content">
+            Oh no! If you're reading this, something went wrong. :(
+          </div>
+          <script>
 
-    in
-    if justJs
-    then
-      ''
-      <div id="content">
-        Oh no! If you're reading this, something went wrong. :(
-      </div>
-      <script>
+          /* content */
+          // todo : add your contents in here
+          const contentItems = ${builtins.toJSON (jsonConfig)};
 
-      /* content */
-      // todo : add your contents in here
-      const contentItems = ${builtins.toJSON(jsonConfig)};
+          ${optionalString justJs fileContents ./plain.js}
 
-      ${optionalString justJs fileContents ./plain.js}
-
-      </script>
-      ''
-    else
-    concatStringsSep "\n" (map createItemRow jsonConfig)
+          </script>
+        ''
+      else
+        concatStringsSep "\n" (map createItemRow jsonConfig)
     }
 
       </body>

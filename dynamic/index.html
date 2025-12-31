@@ -1,213 +1,224 @@
 <!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1" />
     <title>Landing Page</title>
     <!-- The font -->
-    <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Dosis&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            font-family: 'Dosis', sans-serif;
-            background-color: #FEFAE0;
-            --max-width: 1260px;
-            --title-color: black;
-            --title-background-color: #E9EDC9;
-            --text-color: black;
-            --text-background-color: #FAEDCD;
-            --item-color: black;
-            --item-background-color: #E9EDC9;
-            --image-width: 250px;
-            --image-height: 200px;
-        }
+      :root {
+        font-family: "Dosis", sans-serif;
+        background-color: #fefae0;
+        --max-width: 1260px;
+        --title-color: black;
+        --title-background-color: #e9edc9;
+        --text-color: black;
+        --text-background-color: #faedcd;
+        --item-color: black;
+        --item-background-color: #e9edc9;
+        --image-width: 250px;
+        --image-height: 200px;
+      }
 
-        body {
-            margin-top: 0px;
-            margin-left: 0px;
-            margin-right: 0px;
-            padding-left: 0px;
-            padding-right: 0px;
-        }
+      body {
+        margin-top: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+      }
 
-        .url-encoder {
-            display: grid;
-            grid-template-rows: 2.0em 3em 2.0em;
-            grid-template-columns: auto calc(var(--image-width) / 2) calc(var(--image-width) / 2);
-            grid-template-areas: "head head head"
-                          "input input input"
-                          ". encode decode";
-            background-color: var(--text-background-color);
-            max-width: var(--max-width);
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 0em;
-            margin-bottom: 0.3em;
-        }
+      .url-encoder {
+        display: grid;
+        grid-template-rows: 2em 3em 2em;
+        grid-template-columns: auto calc(var(--image-width) / 2) calc(
+            var(--image-width) / 2
+          );
+        grid-template-areas:
+          "head head head"
+          "input input input"
+          ". encode decode";
+        background-color: var(--text-background-color);
+        max-width: var(--max-width);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0em;
+        margin-bottom: 0.3em;
+      }
 
-        .url-encoder-title {
-            margin: 0.3em 0.3em 0.3em;
-            padding: 0.1em;
-            grid-area: head;
-            font-weight: bold;
-        }
+      .url-encoder-title {
+        margin: 0.3em 0.3em 0.3em;
+        padding: 0.1em;
+        grid-area: head;
+        font-weight: bold;
+      }
 
-        .url-encoder #encodingBox {
-            margin: 0em 0.3em 0.3em;
-            padding: 0.1em;
-            grid-area: input;
-        }
+      .url-encoder #encodingBox {
+        margin: 0em 0.3em 0.3em;
+        padding: 0.1em;
+        grid-area: input;
+      }
 
-        .url-encoder .encode {
-            margin: 0em 0.3em 0.3em;
-            padding: 0.1em;
-            grid-area: encode;
-        }
+      .url-encoder .encode {
+        margin: 0em 0.3em 0.3em;
+        padding: 0.1em;
+        grid-area: encode;
+      }
 
-        .url-encoder .decode {
-            margin: 0em 0.3em 0.3em;
-            padding: 0.1em;
-            grid-area: decode;
-        }
+      .url-encoder .decode {
+        margin: 0em 0.3em 0.3em;
+        padding: 0.1em;
+        grid-area: decode;
+      }
 
-        .row-title {
-            background-color: var(--title-background-color);
-            color: var(--title-color);
-            text-align: center;
-            padding-top: 0.3em;
-            padding-bottom: 0.3em;
-            margin-top: 0px;
-            margin-bottom: 0.3em;
-        }
+      .row-title {
+        background-color: var(--title-background-color);
+        color: var(--title-color);
+        text-align: center;
+        padding-top: 0.3em;
+        padding-bottom: 0.3em;
+        margin-top: 0px;
+        margin-bottom: 0.3em;
+      }
 
-        .row-text {
-            text-align: left;
-            background-color: var(--text-background-color);
-            color: var(--text-color);
-            max-width: var(--max-width);
-            padding-top: 0.1em;
-            padding-bottom: 0.1em;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 0px;
-            margin-bottom: 0.3em;
-        }
+      .row-text {
+        text-align: left;
+        background-color: var(--text-background-color);
+        color: var(--text-color);
+        max-width: var(--max-width);
+        padding-top: 0.1em;
+        padding-bottom: 0.1em;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        margin-bottom: 0.3em;
+      }
 
-        .row-text > pre {
-            margin-left: 1em;
-            margin-right: 1em;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            text-align: justify;
-        }
+      .row-text > pre {
+        margin-left: 1em;
+        margin-right: 1em;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        text-align: justify;
+      }
 
-        .row-items {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            max-width: var(--max-width);
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 0px;
-            margin-bottom: 0.5em;
-        }
+      .row-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: var(--max-width);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        margin-bottom: 0.5em;
+      }
 
-        .item {
-            display: grid;
-            grid-template-columns: var(--image-width);
-            grid-template-rows: auto;
-            grid-template-areas:
-        "image"
-        "text";
-            /* border-style: solid; */
-            border-width: 0px;
-            border-color: var(--item-background-color);
-            background-color: var(--item-background-color);
-            margin-top: 0.2em;
-        }
+      .item {
+        display: grid;
+        grid-template-columns: var(--image-width);
+        grid-template-rows: auto;
+        grid-template-areas:
+          "image"
+          "text";
+        /* border-style: solid; */
+        border-width: 0px;
+        border-color: var(--item-background-color);
+        background-color: var(--item-background-color);
+        margin-top: 0.2em;
+      }
 
-        .item-image {
-            grid-area: image;
-            width: var(--image-width);
-            height: var(--image-height);
-        }
+      .item-image {
+        grid-area: image;
+        width: var(--image-width);
+        height: var(--image-height);
+      }
 
-        .item-caption {
-            grid-area: text;
-            padding-bottom: 0.5em;
-            padding-top: 0.6em;
-            color: var(--item-color);
-            background-color: var(--item-background-color);
-        }
+      .item-caption {
+        grid-area: text;
+        padding-bottom: 0.5em;
+        padding-top: 0.6em;
+        color: var(--item-color);
+        background-color: var(--item-background-color);
+      }
 
-        a {
-            text-decoration: none;
-            color: black;
-        }
+      a {
+        text-decoration: none;
+        color: black;
+      }
 
-        a:link {
-            text-decoration: none;
-            color: black;
-        }
+      a:link {
+        text-decoration: none;
+        color: black;
+      }
 
-        a:visited {
-            text-decoration: none;
-            color: black;
-        }
+      a:visited {
+        text-decoration: none;
+        color: black;
+      }
 
-        a:hover {
-            text-decoration: none;
-            color: black;
-        }
+      a:hover {
+        text-decoration: none;
+        color: black;
+      }
 
-        a:active {
-            text-decoration: none;
-            color: black;
-        }
+      a:active {
+        text-decoration: none;
+        color: black;
+      }
 
-        .item:hover > .item-caption {
-            filter: invert(1);
-            transition-duration: 0.3s;
-        }
+      .item:hover > .item-caption {
+        filter: invert(1);
+        transition-duration: 0.3s;
+      }
     </style>
-</head>
-<!-- URL Encoder -->
-<script type="text/javascript">
+  </head>
+  <!-- URL Encoder -->
+  <script type="text/javascript">
     function boxEncode() {
-        area = document.getElementById("encodingBox")
-        var unencoded = area.value;
-        area.value = encodeURIComponent(unencoded).replace(/'/g, "%27").replace(/"/g, "%22");
+      area = document.getElementById("encodingBox");
+      var unencoded = area.value;
+      area.value = encodeURIComponent(unencoded)
+        .replace(/'/g, "%27")
+        .replace(/"/g, "%22");
     }
 
     function boxDecode() {
-        area = document.getElementById("encodingBox")
-        var encoded = area.value;
-        area.value = decodeURIComponent(encoded).replace(/'/g, "%27").replace(/"/g, "%22");
+      area = document.getElementById("encodingBox");
+      var encoded = area.value;
+      area.value = decodeURIComponent(encoded)
+        .replace(/'/g, "%27")
+        .replace(/"/g, "%22");
     }
-</script>
-<body>
+  </script>
+  <body>
+    <div id="content">
+      Oh no! If you're reading this, something went wrong. :(
+    </div>
+    <script>
+      /* script to insert content */
 
-<div id="content">
-    Oh no! If you're reading this, something went wrong. :(
-</div>
-<script>
-
-    /* script to insert content */
-
-    const createItemRow = item => {
-
-        const title = item.title ? `
+      const createItemRow = (item) => {
+        const title = item.title
+          ? `
             <h2 class="row-title"> ${item.title} </h2>
-        ` : '';
+        `
+          : "";
 
-        const text = item.text ? `
+        const text = item.text
+          ? `
             <div class="row-text">
                 <pre>${item.text}</pre>
             </div>
-        ` : '';
+        `
+          : "";
 
         const subItems = item.items
-            .map(subItem => createSubItem(subItem))
-            .join('');
+          .map((subItem) => createSubItem(subItem))
+          .join("");
 
         return `
             <div class="row">
@@ -218,10 +229,11 @@
               </div>
             </div>
         `;
-    }
+      };
 
-    const createSubItem = ({label, href, image}) => {
-        const shortLabel = (label.length > 28) ? `${label.substring(0, 25)}...` : label;
+      const createSubItem = ({ label, href, image }) => {
+        const shortLabel =
+          label.length > 28 ? `${label.substring(0, 25)}...` : label;
 
         return `
         <a target="_blank" rel="noopener noreferrer" href="${href}" class="item">
@@ -229,25 +241,21 @@
            <span class="item-caption" style="text-align:center;font-weight:bold"> ${shortLabel} </span>
         </a>
         `;
-    }
+      };
 
-    /* end of script */
+      /* end of script */
 
-    fetch('./items.json')
-        .then(response => response.json())
-        .then(data => {
-            const container = document.querySelector('#content');
-            container.innerHTML = data
-                .map(item => createItemRow(item))
-                .join('');
+      fetch("./items.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const container = document.querySelector("#content");
+          container.innerHTML = data
+            .map((item) => createItemRow(item))
+            .join("");
         })
-        .catch(error => console.log('Error:', error));
+        .catch((error) => console.log("Error:", error));
 
-
-    /* --- */
-
-</script>
-
-
-</body>
+      /* --- */
+    </script>
+  </body>
 </html>
